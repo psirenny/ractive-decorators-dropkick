@@ -1,0 +1,25 @@
+{
+  "author": "Dennis Torres <djtorres0@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/psirenny/ractive-decorators-dropkick/issues"
+  },
+  "description": "Ractive.js decorator for DropKick.js",
+  "keywords": [
+    "decorator",
+    "dropkick",
+    "js",
+    "ractive"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "ractive-decorators-dropkick",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/psirenny/ractive-decorators-dropkick.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.1.0"
+}
