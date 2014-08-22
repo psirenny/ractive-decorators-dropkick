@@ -11,12 +11,12 @@ Currently, only works with jquery-dropkick version **1.5.x**.
 Installation
 ------------
 
-npm install ractive-decorators-dropkick --save
+    $ npm install ractive-decorators-dropkick --save
 
 Usage
 -----
 
-var ractive = require('ractive');
-var dropkick = require('ractive-decorators-dropkick');
+    var ractive = require('ractive');
+    var dropkick = require('ractive-decorators-dropkick');
 
-ractive.decorators.dropkick = dropkick;
+    ractive.decorators.dropkick = dropkick;
