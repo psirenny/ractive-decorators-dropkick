@@ -2,7 +2,7 @@ module.exports = function (node) {
   var ractive = node._ractive;
   var init = true;
   var lock = false;
-  var observer = null;
+  var observers = [];
 
   jQuery(node)
     .dropkick()
@@ -15,19 +15,29 @@ module.exports = function (node) {
 
   if (ractive.binding) {
     var keypath = ractive.binding.keypath;
-    observer = ractive.root.observe(keypath, function (val) {
+    observers.push(ractive.root.observe(keypath, function (val) {
       if (init) return init = false;
       if (lock) return;
       lock = true;
       jQuery(node).dropkick('setValue', val);
       lock = false;
-    });
+    }));
   }
+
+  ractive.proxy.attributes.forEach(function (attr) {
+    if (attr.name !== 'disabled') return;
+    var keypath = attr.interpolator.keypath;
+    observers.push(ractive.root.observe(keypath, function (val) {
+      jQuery(node).dropkick('disable', val);
+    }));
+  });
 
   return {
     teardown: function () {
       jQuery(node).dropkick('destroy');
-      if (observer) observer.cancel();
+      observers.forEach(function (obs) {
+        obs.cancel();
+      })
     }
   }
 };
