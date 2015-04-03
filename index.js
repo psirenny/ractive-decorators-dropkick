@@ -15,6 +15,7 @@ module.exports = function (node) {
 
   if (ractive.binding) {
     var keypath = ractive.binding.keypath;
+    if (typeof keypath === 'object') keypath = keypath.str;
     observers.push(ractive.root.observe(keypath, function (val) {
       if (init) return init = false;
       if (lock) return;
@@ -27,6 +28,7 @@ module.exports = function (node) {
   ractive.proxy.attributes.forEach(function (attr) {
     if (attr.name !== 'disabled') return;
     var keypath = attr.interpolator.keypath;
+    if (typeof keypath === 'object') keypath = keypath.str;
     observers.push(ractive.root.observe(keypath, function (val) {
       jQuery(node).dropkick('disable', val);
     }));
